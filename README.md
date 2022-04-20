@@ -15,9 +15,15 @@ GraphQL in Clojure data structures, [Hiccup](https://github.com/weavejester/hicc
 5. [License](#license)
 
 ___
-[![Clojars Project](https://img.shields.io/clojars/v/io.github.timrichardt/hicgql.svg)](https://clojars.org/io.github.timrichardt/hicgql)
 
 ## Installation
+[![Clojars Project](https://img.shields.io/clojars/v/io.github.timrichardt/hicgql.svg)](https://clojars.org/io.github.timrichardt/hicgql)
+
+`hicgql` is available on Clojars. To use it just add the dependency to your project configuration.
+```clojure
+[io.github.timrichardt/hicgql "0.1.0"]
+```
+
 ```clojure
 (:require
  [hicgql.core :refer [graphql]])
