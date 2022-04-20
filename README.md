@@ -168,3 +168,5 @@ fragment Fragment on Type {
 3. re-graph by Oliver Hine, https://github.com/oliyh/re-graph
 
 ## License
+Eclipse Public License
+https://www.eclipse.org/legal/epl-v10.html
