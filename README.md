@@ -21,7 +21,7 @@ ___
 
 `hicgql` is available on Clojars. To use it just add the dependency to your project configuration.
 ```clojure
-[io.github.timrichardt/hicgql "0.1.0"]
+[io.github.timrichardt/hicgql "0.2.0"]
 ```
 
 ```clojure
