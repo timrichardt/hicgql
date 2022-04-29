@@ -2,7 +2,8 @@
   "Hiccup for GraphQL.
 
   Create `ExecutableDefinition`."
-  (:require [clojure.string]))
+  (:require [clojure.string]
+            #?(:clj [cheshire.core])))
 
 
 (defn- mapstr
@@ -12,14 +13,15 @@
        (apply str)))
 
 
-(defn- stringify
+(defn stringify
   [object]
   ;; TODO: support deep variables (now :$kw only catched at
   ;; first level
   (if (and (keyword? object)
            (clojure.string/starts-with? (name object) "$"))
     (name object)
-    (js/JSON.stringify (clj->js object))))
+    #?(:clj (cheshire.core/generate-string object)
+       :cljs (js/JSON.stringify (clj->js object)))))
 
 
 (declare node->graphql)

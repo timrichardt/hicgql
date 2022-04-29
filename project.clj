@@ -6,7 +6,8 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies
-  [[org.clojure/clojurescript "1.10.520" :scope "provided"]]
+  [[org.clojure/clojurescript "1.10.520" :scope "provided"]
+   [cheshire "5.10.2"]]
 
   :repositories
   {"clojars" {:url "https://clojars.org/repo"
