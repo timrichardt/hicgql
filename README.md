@@ -19,9 +19,12 @@ ___
 ## Installation
 [![Clojars Project](https://img.shields.io/clojars/v/io.github.timrichardt/hicgql.svg)](https://clojars.org/io.github.timrichardt/hicgql)
 
-`hicgql` is available on Clojars. To use it just add the dependency to your project configuration.
+`hicgql` is in Clojars. Just add it.
 ```clojure
 [io.github.timrichardt/hicgql "0.2.0"]
+````
+```clojure
+io.github.timrichardt/hicgql {:mvn/version "0.2.0"}
 ```
 
 ```clojure
@@ -81,7 +84,7 @@ Fields with subfields are prefixed by `:+/` namespace. Data fields without subfi
 
 #### Arguments and Values
 Arguments to fields can be set with a map which is the second element of the selection vector. Argument names are the keys, the values can be clojure data structures that can be meaningfully translated with
-`js/JSON.stringify`.
+`js/JSON.stringify` or `cheshire.core/generate-string`.
 ```clojure
 [:+/_
  [:fieldWithArgs {:stringArg "string"
