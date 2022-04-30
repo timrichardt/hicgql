@@ -98,7 +98,7 @@ Arguments to fields can be set with a map which is the second element of the sel
 }
 ```
 
-To define a GraphQL document, that does not start with an operation, there is `:*/_`: `[:+/_ field]` → `{ field }`.
+To define a GraphQL document, that does not start with an operation, there is `:+/_`: `[:+/_ field]` → `{ field }`.
 
 #### Directives
 Directives can be set with the `:!` key in the property map. `!:`'s value has to be a list of directives. A directive is either a key `:directive` → `@directive`, or can be supplied with arguments, like a field.
