@@ -198,13 +198,6 @@
   ;; => "{id}"
 
   (graphql
-   [:+/_ [:pizzas {:cheese "Mozerella di bufala"
-                   :size   [27.32 "cm"]
-                   :limit  2
-                   :what   {:ever 420}}]])
-  ;; => {pizzas(cheese:\"Mozerella di bufala\",size:[27.32,\"cm\"],limit:2,what:{\"ever\":420})}
-
-  (graphql
    [:*/Op :id])
 
   (graphql
@@ -223,13 +216,6 @@
            :$var   'VAL} :id])
   ;; => "query Op($var:VAL){id}"
 
-  (graphql
-   [:+/_
-    [:+/pizza
-     [:?/Magherita [:+/cheese :type]]
-     [:?/Funghi [:+/mushroom :toxicity]]]])
-  ;; => "{pizza{... on Magherita{cheese{type}},... on Funghi{mushroom{toxicity}}}}"
-  
   (graphql
    [:*/m {:$var "Type"}
     [:+/selection
@@ -255,7 +241,7 @@
    [:+/_
     [:fieldWithDirs {:!   [[:dir2 {:arg1 :$var
                                    :arg2 'VAL}]
-                           :dir1]}]   ])
+                           :dir1]}]])
 
   (graphql
    [:+/_
@@ -264,5 +250,4 @@
   (graphql
    [:+/_
     [:>/alias [:someField {:arg "val"}]]])
-  "{alias:someField(arg:\"val\")}"
-  )
+  "{alias:someField(arg:\"val\")}")
