@@ -261,4 +261,4 @@
     (for [m ["M" "N" "P"]]
       (for [a ["A" "B" "C"]
             x ["X" "Y" "Z"]]
-        (keyword (str a x m))))]))
+        [:+/_ (keyword (str x a m))]))]))
