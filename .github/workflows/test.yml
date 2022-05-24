@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Setup Clojure
+      uses: DeLaGuardo/setup-clojure@5.1
     - name: run ClojureScript tests
       run: clojure -Mtest-cljs
     - name: run Clojure tests
