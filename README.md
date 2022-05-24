@@ -10,6 +10,7 @@ GraphQL in Clojure data structures, [Hiccup](https://github.com/weavejester/hicc
    3. [Aliases](#aliases)
    4. [Inline Fragments](#if)
    5. [Fragment definitions](#fragdef)
+   6. [Clojure sequences](#seqs)
 3. [Usage with `re-graph`](#regraph)
 4. [References](#refs)
 5. [License](#license)
@@ -156,6 +157,21 @@ Fragments are defined as operations, but with `:§/` namespaced keywords. The fr
 fragment Fragment on Type {
   field
 }
+```
+### Clojure sequences
+Sequential fields are flattened, so it is possible, to use for example `for`, to generate a list of fields.
+```clojure
+(graphql
+   [:+/_
+    (for [m ["M" "N"]]
+      (for [a ["A" "B" "C"]
+            x ["X" "Y" "Z"]]
+        (keyword (str a x m))))])
+```
+
+```graphql
+{AXM,AYM,AZM,BXM,BYM,BZM,CXM,CYM,CZM,AXN,AYN,AZN,BXN,
+BYN,BZN,CXN,CYN,CZN,AXP,AYP,AZP,BXP,BYP,BZP,CXP,CYP,CZP}
 ```
 
 ## Usage with `re-graph`

@@ -245,6 +245,13 @@
 
   (graphql
    [:+/_
+    (for [m ["M" "N" "P"]]
+      (for [a ["A" "B" "C"]
+            x ["X" "Y" "Z"]]
+        (keyword (str a x m))))])
+
+  (graphql
+   [:+/_
     [:?/TypeA :id]])
 
   (graphql
