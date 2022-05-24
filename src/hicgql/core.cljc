@@ -243,16 +243,9 @@
 
   (graphql
    [:+/_
-    [:fieldWithDirs {:!   [[:dir2 {:arg1 :$var
-                                   :arg2 'VAL}]
-                           :dir1]}]])
-
-  (graphql
-   [:+/_
-    (for [m ["M" "N" "P"]]
-      (for [a ["A" "B" "C"]
-            x ["X" "Y" "Z"]]
-        (keyword (str a x m))))])
+    [:fieldWithDirs {:! [[:dir2 {:arg1 :$var
+                                 :arg2 'VAL}]
+                         :dir1]}]])
 
   (graphql
    [:+/_
@@ -261,4 +254,11 @@
   (graphql
    [:+/_
     [:>/alias [:someField {:arg "val"}]]])
-  "{alias:someField(arg:\"val\")}")
+  "{alias:someField(arg:\"val\")}"
+
+  (graphql
+   [:+/_
+    (for [m ["M" "N" "P"]]
+      (for [a ["A" "B" "C"]
+            x ["X" "Y" "Z"]]
+        (keyword (str a x m))))]))
