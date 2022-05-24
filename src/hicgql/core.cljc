@@ -156,30 +156,34 @@
 
     (sequential? node)
     (let [[field arg1] node]
-      (if (sequential? field)
-        (mapstr node->graphql node)
-        (condp = (namespace field)
-          "*" (cond (or (vector? arg1) (keyword? arg1))
-                    (operation->graphql field {} (rest node))
+      (if (and (= field :+/_) (= (count node) 1))
+        "{}"
+        (if (sequential? field)
+          (mapstr node->graphql node)
+          (condp = (namespace field)
+            "*" (cond (or (vector? arg1) (keyword? arg1))
+                      (operation->graphql field {} (rest node))
 
-                    (map? arg1)
-                    (operation->graphql field arg1 (drop 2 node)))
+                      (map? arg1)
+                      (operation->graphql field arg1 (drop 2 node)))
 
-          "§" (if (map? arg1)
-                (fragment-def->graphql field arg1 (drop 2 node))
-                (fragment-def->graphql field {} (rest node)))
+            "§" (if (map? arg1)
+                  (fragment-def->graphql field arg1 (drop 2 node))
+                  (fragment-def->graphql field {} (rest node)))
 
-          "?" (inline-fragment->graphql node)
+            "?" (inline-fragment->graphql node)
 
-          ">" (alias->graphql node)
+            ">" (alias->graphql node)
 
-          "+" (cond (map? arg1)
-                    (selection->graphql field arg1 (drop 2 node))
+            "+" (cond (map? arg1)
+                      (selection->graphql field arg1 (drop 2 node))
 
-                    :else
-                    (selection->graphql field {} (rest node)))
+                      :else
+                      (selection->graphql field {} (rest node)))
 
-          nil (mapstr node->graphql node))))))
+            nil (if (map? arg1)
+                  (selection->graphql field arg1 nil)
+                  (mapstr node->graphql node))))))))
 
 
 (defn graphql
