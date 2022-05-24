@@ -1,18 +1,18 @@
 # hicgql
 GraphQL in Clojure data structures, [Hiccup](https://github.com/weavejester/hiccup) style.
 
-1. [Installation](#install)
+1. [Installation](#installation)
 2. [Examples](#examples)
-   1. [Operations](#ops)
-   2. [Fields, Fragments, and Selections](#ffs)
-      1. [Arguments and Values](#args)
-      2. [Directives](#dirs)
+   1. [Operations](#operations)
+   2. [Fields, Fragments, and Selections](#fields-fragments-and-selections)
+      1. [Arguments and Values](#arguments-and-values)
+      2. [Directives](#directives)
    3. [Aliases](#aliases)
-   4. [Inline Fragments](#if)
-   5. [Fragment definitions](#fragdef)
-   6. [Clojure sequences](#seqs)
-3. [Usage with `re-graph`](#regraph)
-4. [References](#refs)
+   4. [Inline Fragments](#inline-fragments)
+   5. [Fragment definitions](#fragment-definitions)
+   6. [Clojure sequences](#clojure-sequences)
+3. [Usage with `re-graph`](#usage-with-re-graph)
+4. [References](#references)
 5. [License](#license)
 
 ___
@@ -159,14 +159,13 @@ fragment Fragment on Type {
 }
 ```
 ### Clojure sequences
-Sequential fields are flattened, so it is possible, to use for example `for`, to generate a list of fields.
+It is possible, to use for example `for`, to generate a list of fields.
 ```clojure
-(graphql
-   [:+/_
-    (for [m ["M" "N"]]
-      (for [a ["A" "B" "C"]
-            x ["X" "Y" "Z"]]
-        (keyword (str a x m))))])
+[:+/_
+ (for [m ["M" "N"]]
+   (for [a ["A" "B" "C"]
+         x ["X" "Y" "Z"]]
+     (keyword (str a x m))))]
 ```
 
 ```graphql
