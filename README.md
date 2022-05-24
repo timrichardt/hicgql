@@ -22,10 +22,10 @@ ___
 
 `hicgql` is in Clojars. Just add it.
 ```clojure
-[io.github.timrichardt/hicgql "0.2.0"]
+[io.github.timrichardt/hicgql "0.3.0"]
 ````
 ```clojure
-io.github.timrichardt/hicgql {:mvn/version "0.2.0"}
+io.github.timrichardt/hicgql {:mvn/version "0.3.0"}
 ```
 
 ```clojure

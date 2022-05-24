@@ -1,4 +1,4 @@
-(defproject io.github.timrichardt/hicgql "0.2.0"
+(defproject io.github.timrichardt/hicgql "0.3.0"
   :description "GraphQL in Clojure data structures."
   :url "https://github.com/timrichardt/hicgql"
 
