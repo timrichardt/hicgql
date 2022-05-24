@@ -46,7 +46,7 @@
          "{fieldWithDirs@dir2(arg1:$var,arg2:\"VAL\") @dir1}")))
 
 
-(deftest alias
+(deftest aliases
   (is (= (graphql
           [:+/_
            [:>/alias [:someField {:arg "val"}]]])
