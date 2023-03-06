@@ -74,3 +74,23 @@
                    x ["X" "Y" "Z"]]
                (keyword (str a x m))))])
          "{AXM,AYM,AZM,BXM,BYM,BZM,CXM,CYM,CZM,AXN,AYN,AZN,BXN,BYN,BZN,CXN,CYN,CZN,AXP,AYP,AZP,BXP,BYP,BZP,CXP,CYP,CZP}")))
+
+
+(deftest multiple-forms
+  (is (= (graphql
+          [:+/_
+           (for [m ["M" "N" "P"]]
+             (for [a ["A" "B" "C"]
+                   x ["X" "Y" "Z"]]
+               (keyword (str a x m))))]
+          nil
+          []
+          '()
+          {}
+          [:+/_
+           (for [m ["M" "N" "P"]]
+             (for [a ["A" "B" "C"]
+                   x ["X" "Y" "Z"]]
+               (keyword (str a x m))))])
+         "{AXM,AYM,AZM,BXM,BYM,BZM,CXM,CYM,CZM,AXN,AYN,AZN,BXN,BYN,BZN,CXN,CYN,CZN,AXP,AYP,AZP,BXP,BYP,BZP,CXP,CYP,CZP}
+{AXM,AYM,AZM,BXM,BYM,BZM,CXM,CYM,CZM,AXN,AYN,AZN,BXN,BYN,BZN,CXN,CYN,CZN,AXP,AYP,AZP,BXP,BYP,BZP,CXP,CYP,CZP}")))

@@ -1,7 +1,5 @@
 (ns hicgql.core
-  "Hiccup for GraphQL.
-
-  Create `ExecutableDefinition`."
+  "Hiccup for GraphQL."
   (:require [clojure.string]
             #?(:clj [cheshire.core])))
 
@@ -190,7 +188,7 @@
   ""
   [& args]
   (->> args
-       (filter seq)
+       (filter seq) ;; TODO: why? (prolly convenience)
        (map node->graphql)
        (interpose \newline)
        (apply str)))
@@ -219,7 +217,7 @@
    [:*/Op {:*/type :query
            :$var   'VAL} :id])
   ;; => "query Op($var:VAL){id}"
-
+  
   (graphql
    [:*/m {:$var "Type"}
     [:+/selection
