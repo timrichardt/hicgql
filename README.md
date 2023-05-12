@@ -1,5 +1,5 @@
 # hicgql
-GraphQL in Clojure data structures, [Hiccup](https://github.com/weavejester/hiccup) style.
+GraphQL queries as Clojure data structures, [Hiccup](https://github.com/weavejester/hiccup) style.
 
 1. [Installation](#installation)
 2. [Examples](#examples)
