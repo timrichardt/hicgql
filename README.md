@@ -9,8 +9,8 @@ GraphQL queries as Clojure data structures, [Hiccup](https://github.com/weavejes
       2. [Directives](#directives)
    3. [Aliases](#aliases)
    4. [Inline Fragments](#inline-fragments)
-   5. [Fragment definitions](#fragment-definitions)
-   6. [Clojure sequences](#clojure-sequences)
+   5. [Fragment Definitions](#fragment-definitions)
+   6. [Clojure Sequences](#clojure-sequences)
 3. [Usage with `re-graph`](#usage-with-re-graph)
 4. [References](#references)
 5. [License](#license)
@@ -84,7 +84,7 @@ Fields with subfields are prefixed by `:+/` namespace. Data fields without subfi
 ```
 
 #### Arguments and Values
-Arguments to fields can be set with a map which is the second element of the selection vector. Argument names are the keys, the values can be clojure data structures that can be meaningfully translated with
+Arguments to fields can be set with a map which is the second element of the selection vector. Argument names are the keys, the values can be Clojure data structures that can be meaningfully translated with
 `js/JSON.stringify` or `cheshire.core/generate-string`.
 ```clojure
 [:+/_
@@ -102,7 +102,7 @@ Arguments to fields can be set with a map which is the second element of the sel
 To define a GraphQL document, that does not start with an operation, there is `:+/_`: `[:+/_ field]` → `{ field }`.
 
 #### Directives
-Directives can be set with the `:!` key in the property map. `!:`'s value has to be a list of directives. A directive is either a key `:directive` → `@directive`, or can be supplied with arguments, like a field.
+Directives can be set with the `:!` key in the property map. `:!`'s value has to be a list of directives. A directive is either a key `:directive` → `@directive`, or can be supplied with arguments, like a field.
 ```clojure
 [:+/_
  [:fieldWithDirs {:! [[:dir2 {:arg1 :$var
@@ -146,7 +146,7 @@ Inline fragments are defined with `:?/` prefixed keywords. The `name` of the key
 }
 ```
 
-### Fragment definitions
+### Fragment Definitions
 Fragments are defined as operations, but with `:§/` namespaced keywords. The fragment type has to be set via the `:on` property.
 ```clojure
 [:§/Fragment {:on :Type}
@@ -158,7 +158,7 @@ fragment Fragment on Type {
   field
 }
 ```
-### Clojure sequences
+### Clojure Sequences
 It is possible, to use for example `for`, to generate a list of fields.
 ```clojure
 [:+/_
