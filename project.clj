@@ -1,4 +1,4 @@
-(defproject io.github.timrichardt/hicgql "0.3.0"
+(defproject io.github.timrichardt/hicgql "0.3.1"
   :description "GraphQL in Clojure data structures."
   :url "https://github.com/timrichardt/hicgql"
 
@@ -12,6 +12,6 @@
   :repositories
   {"clojars" {:url           "https://clojars.org/repo"
               :sign-releases false}}
-  
+
   :source-paths
   ["src"])

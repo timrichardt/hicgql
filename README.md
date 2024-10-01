@@ -22,10 +22,10 @@ ___
 
 `hicgql` is in Clojars. Just add it.
 ```clojure
-[io.github.timrichardt/hicgql "0.3.0"]
+[io.github.timrichardt/hicgql "0.3.1"]
 ````
 ```clojure
-io.github.timrichardt/hicgql {:mvn/version "0.3.0"}
+io.github.timrichardt/hicgql {:mvn/version "0.3.1"}
 ```
 
 ```clojure
@@ -43,7 +43,7 @@ GraphQL documents are described with nested vectors, where the first element of 
 `hicgql.core/graphql` accepts an arbitrary number of operations and renders them concatenated with a`\n` inbetween.
 
 ### Operations
-Operations are described with `:*/` namespaced keywords, e.g. `:*/OperationName`. Valid types are `:query`, `:mutation`, `subscription`, and can be set via `:*/type`. Variables are supplied as `:$var "Type"` pairs.
+Operations are described with `:*/` namespaced keywords, e.g. `:*/OperationName`. Valid types are `:query`, `:mutation`, `:subscription`, and can be set via `:*/type`. Variables are supplied as `:$var "Type"` pairs.
 
 ```clojure
 (graphql
@@ -174,7 +174,8 @@ BYN,BZN,CXN,CYN,CZN,AXP,AYP,AZP,BXP,BYP,BZP,CXP,CYP,CZP}
 ```
 
 ## Usage with `re-graph`
-`re-graph` adds the operation type on it's own, so you must not supply the `*:/type` keyword to the property map.
+`re-graph` adds the operation type itself, so you don't need to add the `:*/type` keyword to the property map.
+
 ```clojure
 (re-graph/query
  :query-id
