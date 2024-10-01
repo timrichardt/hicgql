@@ -8,8 +8,7 @@
           [:*/Op {:*/type :query
                   :$var   "Type"
                   :$var2  ["Type2" "default-value"]} :id])
-         "query Op($var:Type,$var2:Type2=[\"Type2\",\"default-value\"]){id}")))
-
+         "query Op($var:Type,$var2:Type2=\"default-value\"){id}")))
 
 (deftest unnamed-operation
   (is (= (graphql [:+/_])

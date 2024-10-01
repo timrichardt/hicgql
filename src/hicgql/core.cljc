@@ -3,13 +3,11 @@
   (:require [clojure.string]
             #?(:clj [cheshire.core])))
 
-
 (defn- mapstr
   [f nodes]
   (->> (map f nodes)
        (interpose ",")
        (apply str)))
-
 
 (defn stringify
   [object]
@@ -21,9 +19,7 @@
     #?(:clj (cheshire.core/generate-string object)
        :cljs (js/JSON.stringify (clj->js object)))))
 
-
 (declare node->graphql)
-
 
 (defn- field->graphql
   [node]
@@ -31,11 +27,9 @@
     (when-not (= node-name "_")
       node-name)))
 
-
 (defn- fragment->graphql
   [node]
   (str "..." (name node)))
-
 
 (defn- vars->graphql
   "```clojure
@@ -49,7 +43,7 @@
     (->> varmap
          (map (fn [[k v]]
                 (if (vector? v)
-                  (str (name k) ":" (first v) "=" (stringify v))
+                  (str (name k) ":" (first v) "=" (stringify (second v)))
                   ;; TODO: maybe represent type decls also
                   ;; as data structures?
                   (str (name k) ":" v))))
@@ -57,11 +51,9 @@
          (apply str)
          (#(str "(" % ")")))))
 
-
 (defn- alias->graphql
   [[alias node]]
   (str (name alias) ":" (node->graphql node)))
-
 
 (defn- args->graphql
   "```clojure
@@ -79,7 +71,6 @@
          (interpose ",")
          (apply str)
          (#(str "(" % ")")))))
-
 
 (defn- directives->graphql
   "```clojure
@@ -101,9 +92,7 @@
        (interpose " ")
        (apply str)))
 
-
 (declare node->graphql)
-
 
 (defn- operation->graphql
   ""
@@ -118,11 +107,9 @@
      (when selection
        (str "{" (mapstr node->graphql selection) "}")))))
 
-
 (defn- inline-fragment->graphql
   [[type & subfields]]
   (str "... on " (name type) "{" (mapstr node->graphql subfields) "}"))
-
 
 (defn- selection->graphql
   [field props subfields]
@@ -134,14 +121,12 @@
          (when (seq subfields)
            (str "{" (mapstr node->graphql subfields) "}")))))
 
-
 (defn- fragment-def->graphql
   [field {:keys [on]} selection]
   (str "fragment " (name field)
        (when on
          (str " on " (name on)))
        "{" (mapstr node->graphql selection) "}"))
-
 
 (defn- node->graphql
   ""
@@ -183,7 +168,6 @@
                   (selection->graphql field arg1 nil)
                   (mapstr node->graphql node))))))))
 
-
 (defn graphql
   ""
   [& args]
@@ -192,7 +176,6 @@
        (map node->graphql)
        (interpose \newline)
        (apply str)))
-
 
 (comment
   (graphql
@@ -217,7 +200,7 @@
    [:*/Op {:*/type :query
            :$var   'VAL} :id])
   ;; => "query Op($var:VAL){id}"
-  
+
   (graphql
    [:*/m {:$var "Type"}
     [:+/selection
